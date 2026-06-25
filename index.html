@@ -33,34 +33,7 @@
             padding: 0 20px;
         }
 
-        /* Header */
-        header {
-            padding: 25px 0;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            position: sticky;
-            top: 0;
-            z-index: 1001;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
 
-        .header-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .logo {
-            max-height: 90px;
-            width: auto;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
-        }
 
         /* Hero Section */
         .hero {
@@ -78,8 +51,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=modern%20tow%20truck%20transporting%20car%20on%20highway%20at%20night%20dramatic%20lighting%20professional%20photography%20black%20and%20white&image_size=landscape_16_9') center/cover;
-            opacity: 0.1;
+            background: url('foto-1.jpg') center/cover;
+            opacity: 0.3;
         }
 
         .hero::after {
@@ -97,6 +70,18 @@
             z-index: 1;
             text-align: center;
             animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-logo {
+            max-height: 200px;
+            width: auto;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+            margin-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-logo:hover {
+            transform: scale(1.05);
         }
 
         @keyframes fadeInUp {
@@ -341,6 +326,32 @@
             background: linear-gradient(180deg, #080808 0%, #0f0f0f 50%, #080808 100%);
         }
 
+        .gallery-carousel {
+            display: none;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+
+        .gallery-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-pages {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .gallery-page {
+            flex: 0 0 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 10px;
+            scroll-snap-align: start;
+        }
+
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -355,6 +366,121 @@
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid rgba(255, 255, 255, 0.08);
             position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-dots {
+            display: none;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .gallery-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Botões Flutuantes */
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .floating-whatsapp {
+            background: #25D366;
+        }
+
+        .floating-phone {
+            background: #0088cc;
+        }
+
+        .floating-tooltip {
+            position: absolute;
+            right: 75px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-tooltip::after {
+            content: '';
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 8px solid transparent;
+            border-left-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .floating-whatsapp .floating-tooltip {
+            animation: tooltipPulse 8s infinite;
+        }
+
+        .floating-whatsapp:hover .floating-tooltip {
+            opacity: 1;
+            visibility: visible;
+            animation: none;
+        }
+
+        @keyframes tooltipPulse {
+            0%, 80%, 100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+            15%, 75% {
+                opacity: 1;
+                visibility: visible;
+            }
         }
 
         .gallery-item::after {
@@ -544,7 +670,7 @@
 
         /* Footer */
         .footer {
-            padding: 120px 0 180px;
+            padding: 120px 0 80px;
             background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
             text-align: center;
             position: relative;
@@ -576,38 +702,7 @@
             margin: 50px 0;
         }
 
-        /* Sticky CTA Bar */
-        .sticky-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.98);
-            backdrop-filter: blur(20px);
-            padding: 20px;
-            z-index: 1001;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5);
-        }
 
-        .sticky-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .sticky-btn {
-            padding: 18px 25px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            border-radius: 8px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
 
         /* Responsividade para Tablets */
         @media (max-width: 1024px) {
@@ -633,16 +728,14 @@
                 padding: 0 15px;
             }
 
-            header {
-                padding: 12px 0;
-            }
 
-            .logo {
-                max-height: 50px;
-            }
 
             .hero {
                 padding: 40px 0 70px;
+            }
+            .hero-logo {
+                max-height: 150px;
+                margin-bottom: 30px;
             }
 
             .hero h1 {
@@ -688,23 +781,34 @@
                 padding: 70px 0;
             }
 
-            .services-grid,
-            .why-us-grid,
-            .gallery-grid {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .why-us-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+            .gallery-grid {
+                display: none;
+            }
+            .gallery-carousel {
+                display: block;
+            }
+            .gallery-dots {
+                display: flex;
+            }
 
             .service-card {
-                padding: 35px 25px;
+                padding: 30px 15px;
             }
 
             .service-icon {
-                font-size: 3.5rem;
+                font-size: 3rem;
             }
 
             .service-card h3 {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             .why-item {
@@ -740,7 +844,7 @@
             }
 
             .footer {
-                padding: 70px 0 130px;
+                padding: 70px 0 60px;
             }
 
             .footer h2 {
@@ -768,6 +872,17 @@
 
             .lightbox-content img {
                 max-height: 70vh;
+            }
+
+            .floating-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+            }
+
+            .floating-tooltip {
+                right: 65px;
+                font-size: 13px;
             }
         }
 
@@ -801,50 +916,43 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <img src="logo.png" alt="JV Guinchos Logo" class="logo">
-            </div>
-        </div>
-    </header>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>GUINCHO E AUTO SOCORRO 24 HORAS</h1>
+                <img src="logo.png" alt="JV Guinchos Logo" class="hero-logo">
+                <h1>GUINCHO E AUTO SOCORRO</h1>
                 <h2>ATENDIMENTO RÁPIDO, SEGURO E COM PREÇO JUSTO</h2>
-                <p>Chegamos rapidamente até você. Atendimento emergencial em toda a região, 24 horas por dia, 7 dias por semana.</p>
-                <div class="phone-number">(16) 99238-1448</div>
                 
                 <div class="cta-grid">
                     <a href="https://wa.me/5516992381448?text=Olá! Preciso de guincho com urgência!" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> CHAMAR NO WHATSAPP AGORA
+                        <i class="fab fa-whatsapp"></i> CHAMAR NO WHATSAPP
                     </a>
                     <a href="tel:+5516992381448" class="btn btn-phone">
                         <i class="fas fa-phone"></i> LIGAR AGORA
                     </a>
-                    <a href="https://wa.me/5516992381448?text=URGÊNCIA! Preciso de guincho imediatamente!" class="btn btn-emergency">
-                        <i class="fas fa-exclamation-triangle"></i> PRECISO DE GUINCHO URGENTE
-                    </a>
-                    <a href="tel:+5516992381448" class="btn btn-phone">
-                        <i class="fas fa-bolt"></i> ATENDIMENTO IMEDIATO
-                    </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Av.+Marginal+Direita,+1613,+São+Joaquim+da+Barra+-+SP" target="_blank" class="btn btn-maps">
-                        <i class="fas fa-map-marker-alt"></i> ABRIR ROTA NO GOOGLE MAPS
-                    </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Av.+Marginal+Direita,+1613,+São+Joaquim+da+Barra+-+SP" target="_blank" class="btn btn-maps">
-                        <i class="fas fa-compass"></i> COMO CHEGAR
-                    </a>
                     <a href="https://wa.me/5516992381448?text=Olá! Gostaria de solicitar um orçamento para guincho." class="btn btn-whatsapp">
                         <i class="fas fa-comment-dots"></i> SOLICITAR ORÇAMENTO
                     </a>
-                    <a href="https://wa.me/5516992381448?text=Olá! Quero pedir um guincho agora!" class="btn btn-emergency">
-                        <i class="fas fa-truck-pickup"></i> PEDIR GUINCHO AGORA
-                    </a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">NOSSO ALBUM DE FOTOS</h2>
+            <!-- Grid para desktop -->
+            <div class="gallery-grid" id="galleryGrid">
+            </div>
+            <!-- Carousel para mobile -->
+            <div class="gallery-carousel" id="galleryCarousel">
+                <div class="gallery-pages" id="galleryPages">
+                </div>
+            </div>
+            <!-- Indicadores de página para mobile -->
+            <div class="gallery-dots" id="galleryDots">
             </div>
         </div>
     </section>
@@ -931,15 +1039,6 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery">
-        <div class="container">
-            <h2 class="section-title">NOSSO ALBUM DE FOTOS</h2>
-            <div class="gallery-grid" id="galleryGrid">
-            </div>
-        </div>
-    </section>
-
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
@@ -978,7 +1077,7 @@
     <footer class="footer">
         <div class="container">
             <h2>PRECISOU DE GUINCHO?</h2>
-            <h2 style="font-size: clamp(1.5rem, 3vw, 2.8rem); letter-spacing: 3px; font-weight: 800;">ATENDIMENTO IMEDIATO 24 HORAS</h2>
+            <h2 style="font-size: clamp(1.5rem, 3vw, 2.8rem); letter-spacing: 3px; font-weight: 800;">ATENDIMENTO IMEDIATO</h2>
             <div class="phone-number">(16) 99238-1448</div>
             <div class="cta-grid">
                 <a href="https://wa.me/5516992381448?text=Olá! Preciso de guincho com urgência!" class="btn btn-whatsapp">
@@ -997,23 +1096,7 @@
         </div>
     </footer>
 
-    <!-- Sticky CTA Bar -->
-    <div class="sticky-cta">
-        <div class="sticky-grid">
-            <a href="https://wa.me/5516992381448?text=Olá! Preciso de guincho com urgência!" class="btn btn-whatsapp sticky-btn">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-            <a href="tel:+5516992381448" class="btn btn-phone sticky-btn">
-                <i class="fas fa-phone"></i> Ligar
-            </a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Av.+Marginal+Direita,+1613,+São+Joaquim+da+Barra+-+SP" target="_blank" class="btn btn-maps sticky-btn">
-                <i class="fas fa-map-marker-alt"></i> Google Maps
-            </a>
-            <a href="tel:+5516992381448" class="btn btn-emergency sticky-btn">
-                <i class="fas fa-exclamation-triangle"></i> Emergência 24h
-            </a>
-        </div>
-    </div>
+
 
     <script>
         // Lista de imagens da galeria
@@ -1028,13 +1111,14 @@
 
         // Elementos do DOM
         const galleryGrid = document.getElementById('galleryGrid');
+        const galleryPages = document.getElementById('galleryPages');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxClose = document.getElementById('lightboxClose');
         const lightboxPrev = document.getElementById('lightboxPrev');
         const lightboxNext = document.getElementById('lightboxNext');
 
-        // Criar itens da galeria
+        // Criar itens da galeria para desktop
         galleryImages.forEach((src, index) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
@@ -1042,6 +1126,65 @@
             item.addEventListener('click', () => openLightbox(index));
             galleryGrid.appendChild(item);
         });
+
+        // Criar páginas para o carousel mobile (4 fotos por página)
+        const itemsPerPage = 4;
+        const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
+        const galleryDots = document.getElementById('galleryDots');
+        const galleryCarousel = document.getElementById('galleryCarousel');
+        let currentPage = 0;
+
+        for (let i = 0; i < galleryImages.length; i += itemsPerPage) {
+            const page = document.createElement('div');
+            page.className = 'gallery-page';
+            for (let j = i; j < i + itemsPerPage && j < galleryImages.length; j++) {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.innerHTML = `<img src="${galleryImages[j]}" alt="Foto ${j + 1}">`;
+                item.addEventListener('click', () => openLightbox(j));
+                page.appendChild(item);
+            }
+            galleryPages.appendChild(page);
+        }
+
+        // Criar pontos de navegação
+        for (let i = 0; i < totalPages; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goToPage(i));
+            galleryDots.appendChild(dot);
+        }
+
+        // Função para ir para uma página específica
+        function goToPage(pageIndex) {
+            const pageWidth = galleryCarousel.clientWidth;
+            galleryCarousel.scrollTo({
+                left: pageWidth * pageIndex,
+                behavior: 'smooth'
+            });
+            updateActiveDot(pageIndex);
+        }
+
+        // Atualizar ponto ativo ao rolar
+        galleryCarousel.addEventListener('scroll', () => {
+            const pageWidth = galleryCarousel.clientWidth;
+            const newPage = Math.round(galleryCarousel.scrollLeft / pageWidth);
+            if (newPage !== currentPage) {
+                currentPage = newPage;
+                updateActiveDot(newPage);
+            }
+        });
+
+        function updateActiveDot(pageIndex) {
+            const dots = document.querySelectorAll('.gallery-dot');
+            dots.forEach((dot, index) => {
+                if (index === pageIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
 
         // Funções do lightbox
         function openLightbox(index) {
@@ -1079,6 +1222,18 @@
             if (e.key === 'ArrowLeft') prevImage();
             if (e.key === 'ArrowRight') nextImage();
         });
+}
     </script>
+
+    <!-- Botões Flutuantes -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/5516992381448?text=Olá! Preciso de guincho com urgência!" class="floating-btn floating-whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span class="floating-tooltip">Está precisando de guincho urgente?</span>
+        </a>
+        <a href="tel:+5516992381448" class="floating-btn floating-phone">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
 </body>
 </html>
