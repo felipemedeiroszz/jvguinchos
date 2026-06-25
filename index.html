@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JV Guinchos - Auto Socorro 24 Horas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 25px 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            max-height: 90px;
+            width: auto;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 25%, #0d0d0d 50%, #1a1a1a 75%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 60px 0 100px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=modern%20tow%20truck%20transporting%20car%20on%20highway%20at%20night%20dramatic%20lighting%20professional%20photography%20black%20and%20white&image_size=landscape_16_9') center/cover;
+            opacity: 0.1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 60px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, #cccccc 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.4rem, 3vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 1.5vw, 1.4rem);
+            margin-bottom: 35px;
+            color: #aaaaaa;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .phone-number {
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: 900;
+            color: #fff;
+            margin: 40px 0 50px;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+            letter-spacing: 3px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 60px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        /* CTA Buttons Grid */
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .btn {
+            padding: 28px 50px;
+            font-size: 1.35rem;
+            font-weight: 800;
+            border: 3px solid #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: #000;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(255, 255, 255, 0.25);
+        }
+
+        .btn i {
+            font-size: 1.5rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #080808 0%, #0f0f0f 50%, #080808 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
+            padding: 50px 35px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 30px 80px rgba(255, 255, 255, 0.08);
+            background: linear-gradient(145deg, #222222 0%, #111111 100%);
+        }
+
+        .service-icon {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.15);
+            opacity: 1;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .why-item {
+            background: linear-gradient(145deg, #111111 0%, #080808 100%);
+            padding: 35px 40px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-left: 4px solid #fff;
+            transition: all 0.4s ease;
+        }
+
+        .why-item:hover {
+            transform: translateX(10px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 50px rgba(255, 255, 255, 0.05);
+        }
+
+        .why-item i {
+            font-size: 2.2rem;
+            color: #fff;
+            min-width: 50px;
+        }
+
+        .why-item span {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #080808 0%, #0f0f0f 50%, #080808 100%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 30px 80px rgba(255, 255, 255, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            position: relative;
+            animation: zoomIn 0.4s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 20px;
+            box-shadow: 0 50px 150px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -70px;
+            right: 0;
+            font-size: 45px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 55px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: -120px;
+        }
+
+        .lightbox-next {
+            right: -120px;
+        }
+
+        /* Google Maps Section */
+        .maps-section {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+        }
+
+        .maps-card {
+            background: linear-gradient(145deg, #111111 0%, #080808 100%);
+            border-radius: 30px;
+            padding: 70px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.5);
+        }
+
+        .location-icon {
+            font-size: 7rem;
+            margin-bottom: 35px;
+            color: #fff;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .address {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .city {
+            font-size: 1.5rem;
+            color: #aaaaaa;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+
+        .maps-card iframe {
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 120px 0 180px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .footer h2 {
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer .phone-number {
+            margin: 50px 0;
+        }
+
+        /* Sticky CTA Bar */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            z-index: 1001;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .sticky-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .sticky-btn {
+            padding: 18px 25px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sticky-btn {
+                padding: 15px 20px;
+                font-size: 0.95rem;
+            }
+
+            .lightbox-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="logo.png" alt="JV Guinchos Logo" class="logo">
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>GUINCHO E AUTO SOCORRO 24 HORAS</h1>
+                <h2>ATENDIMENTO RÁPIDO, SEGURO E COM PREÇO JUSTO</h2>
+                <p>Chegamos rapidamente até você. Atendimento emergencial em toda a região, 24 horas por dia, 7 dias por semana.</p>
+                <div class="phone-number">(16) 99238-1448</div>
+                
+                <div class="cta-grid">
+                    <a href="https://wa.me/5516992381448?text=Olá! Preciso de guincho com urgência!" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> CHAMAR NO WHATSAPP AGORA
+                    </a>
+                    <a href="tel:+5516992381448" class="btn btn-phone">
+                        <i class="fas fa-phone"></i> LIGAR AGORA
+                    </a>
+                    <a href="https://wa.me/5516992381448?text=URGÊNCIA! Preciso de guincho imediatamente!" class="btn btn-emergency">
+                        <i class="fas fa-exclamation-triangle"></i> PRECISO DE GUINCHO URGENTE
+                    </a>
+                    <a href="tel:+5516992381448" class="btn btn-phone">
+                        <i class="fas fa-bolt"></i> ATENDIMENTO IMEDIATO
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Av.+Marginal+Direita,+1613,+São+Joaquim+da+Barra+-+SP" target="_blank" class="btn btn-maps">
+                        <i class="fas fa-map-marker-alt"></i> ABRIR ROTA NO GOOGLE MAPS
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Av.+Marginal+Direita,+1613,+São+Joaquim+da+Barra+-+SP" target="_blank" class="btn btn-maps">
+                        <i class="fas fa-compass"></i> COMO CHEGAR
+                    </a>
+                    <a href="https://wa.me/5516992381448?text=Olá! Gostaria de solicitar um orçamento para guincho." class="btn btn-whatsapp">
+                        <i class="fas fa-comment-dots"></i> SOLICITAR ORÇAMENTO
+                    </a>
+                    <a href="https://wa.me/5516992381448?text=Olá! Quero pedir um guincho agora!" class="btn btn-emergency">
+                        <i class="fas fa-truck-pickup"></i> PEDIR GUINCHO AGORA
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">NOSSOS SERVIÇOS</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-car"></i></div>
+                    <h3>Guincho para Carros</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-motorcycle"></i></div>
+                    <h3>Guincho para Motos</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-truck-pickup"></i></div>
+                    <h3>Caminhonetes</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-car-side"></i></div>
+                    <h3>Veículos Leves</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-ship"></i></div>
+                    <h3>Jet Ski</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-anchor"></i></div>
+                    <h3>Barcos Pequenos</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Implementos</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-wrench"></i></div>
+                    <h3>Auto Socorro</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title">POR QUE ESCOLHER NOSSA EMPRESA</h2>
+            <div class="why-us-grid">
+                <div class="why-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Atendimento 24 Horas</span>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Chegada Rápida</span>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Preço Justo</span>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Equipe Especializada</span>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Segurança Total</span>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Cobertura Regional</span>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Equipamentos Profissionais</span>
+                </div>
+                <div class="why-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Atendimento Humanizado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">NOSSO ALBUM DE FOTOS</h2>
+            <div class="gallery-grid" id="galleryGrid">
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <span class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</span>
+            <img src="" alt="" id="lightboxImg">
+            <span class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</span>
+        </div>
+    </div>
+
+    <!-- Google Maps Section -->
+    <section class="maps-section">
+        <div class="container">
+            <div class="maps-card">
+                <div class="location-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="address">Av. Marginal Direita, 1613</div>
+                <div class="city">São Joaquim da Barra - SP</div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3704.789661552433!2d-47.88767182494372!3d-20.785233980741383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b6e3f4e3f4e3f4%3A0x3f4e3f4e3f4e3f4!2sAv.+Marginal+Direita%2C+1613+-+São+Joaquim+da+Barra+-+SP!5e0!3m2!1spt-BR!2sbr!4v1719273600000!5m2!1spt-BR!2sbr"
+                    width="100%"
+                    height="450"
+                    style="border:0; border-radius: 20px;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <a href="https://www.google.com/maps/search/?api=1&query=Av.+Marginal+Direita,+1613,+São+Joaquim+da+Barra+-+SP" target="_blank" class="btn btn-maps" style="font-size: 1.6rem; padding: 30px 60px;">
+                    <i class="fas fa-map-marker-alt"></i> ABRIR NO GOOGLE MAPS
+                </a>
+                <p style="margin-top: 40px; font-size: 1.3rem; color: #888; letter-spacing: 0.5px;">Receba a rota instantaneamente e venha até nós ou envie sua localização pelo WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h2>PRECISOU DE GUINCHO?</h2>
+            <h2 style="font-size: clamp(1.5rem, 3vw, 2.8rem); letter-spacing: 3px; font-weight: 800;">ATENDIMENTO IMEDIATO 24 HORAS</h2>
+            <div class="phone-number">(16) 99238-1448</div>
+            <div class="cta-grid">
+                <a href="https://wa.me/5516992381448?text=Olá! Preciso de guincho com urgência!" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> CHAMAR NO WHATSAPP
+                </a>
+                <a href="tel:+5516992381448" class="btn btn-phone">
+                    <i class="fas fa-phone"></i> LIGAR AGORA
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Av.+Marginal+Direita,+1613,+São+Joaquim+da+Barra+-+SP" target="_blank" class="btn btn-maps">
+                    <i class="fas fa-map-marker-alt"></i> ABRIR NO GOOGLE MAPS
+                </a>
+                <a href="https://wa.me/5516992381448?text=Olá! Quero pedir um guincho agora!" class="btn btn-emergency">
+                    <i class="fas fa-truck-pickup"></i> SOLICITAR GUINCHO
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA Bar -->
+    <div class="sticky-cta">
+        <div class="sticky-grid">
+            <a href="https://wa.me/5516992381448?text=Olá! Preciso de guincho com urgência!" class="btn btn-whatsapp sticky-btn">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="tel:+5516992381448" class="btn btn-phone sticky-btn">
+                <i class="fas fa-phone"></i> Ligar
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Av.+Marginal+Direita,+1613,+São+Joaquim+da+Barra+-+SP" target="_blank" class="btn btn-maps sticky-btn">
+                <i class="fas fa-map-marker-alt"></i> Google Maps
+            </a>
+            <a href="tel:+5516992381448" class="btn btn-emergency sticky-btn">
+                <i class="fas fa-exclamation-triangle"></i> Emergência 24h
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Lista de imagens da galeria
+        const galleryImages = [
+            'foto-1.jpg', 'foto-2.jpg', 'foto-3.jpg', 'foto-4.jpg', 'foto-5.jpg',
+            'foto-6.jpg', 'foto-7.jpg', 'foto-8.jpg', 'foto-9.jpg', 'foto-10.jpg',
+            'foto-11.jpg', 'foto-12.jpg', 'foto-13.jpg', 'foto-14.jpg', 'foto-15.jpg',
+            'foto-16.jpg', 'foto-17.jpg', 'foto-18.jpg', 'foto-19.jpg', 'foto-20.jpg'
+        ];
+
+        let currentImageIndex = 0;
+
+        // Elementos do DOM
+        const galleryGrid = document.getElementById('galleryGrid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+
+        // Criar itens da galeria
+        galleryImages.forEach((src, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `<img src="${src}" alt="Foto ${index + 1}">`;
+            item.addEventListener('click', () => openLightbox(index));
+            galleryGrid.appendChild(item);
+        });
+
+        // Funções do lightbox
+        function openLightbox(index) {
+            currentImageIndex = index;
+            lightboxImg.src = galleryImages[index];
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentImageIndex];
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentImageIndex];
+        }
+
+        // Event listeners
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevImage);
+        lightboxNext.addEventListener('click', nextImage);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Navegação com teclado
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+    </script>
+</body>
+</html>
