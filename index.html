@@ -1099,130 +1099,131 @@
 
 
     <script>
-        // Lista de imagens da galeria
-        const galleryImages = [
-            'foto-1.jpg', 'foto-2.jpg', 'foto-3.jpg', 'foto-4.jpg', 'foto-5.jpg',
-            'foto-6.jpg', 'foto-7.jpg', 'foto-8.jpg', 'foto-9.jpg', 'foto-10.jpg',
-            'foto-11.jpg', 'foto-12.jpg', 'foto-13.jpg', 'foto-14.jpg', 'foto-15.jpg',
-            'foto-16.jpg', 'foto-17.jpg', 'foto-18.jpg', 'foto-19.jpg', 'foto-20.jpg'
-        ];
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lista de imagens da galeria
+            const galleryImages = [
+                'foto-1.jpg', 'foto-2.jpg', 'foto-3.jpg', 'foto-4.jpg', 'foto-5.jpg',
+                'foto-6.jpg', 'foto-7.jpg', 'foto-8.jpg', 'foto-9.jpg', 'foto-10.jpg',
+                'foto-11.jpg', 'foto-12.jpg', 'foto-13.jpg', 'foto-14.jpg', 'foto-15.jpg',
+                'foto-16.jpg', 'foto-17.jpg', 'foto-18.jpg', 'foto-19.jpg', 'foto-20.jpg'
+            ];
 
-        let currentImageIndex = 0;
+            let currentImageIndex = 0;
 
-        // Elementos do DOM
-        const galleryGrid = document.getElementById('galleryGrid');
-        const galleryPages = document.getElementById('galleryPages');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxClose = document.getElementById('lightboxClose');
-        const lightboxPrev = document.getElementById('lightboxPrev');
-        const lightboxNext = document.getElementById('lightboxNext');
+            // Elementos do DOM
+            const galleryGrid = document.getElementById('galleryGrid');
+            const galleryPages = document.getElementById('galleryPages');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
 
-        // Criar itens da galeria para desktop
-        galleryImages.forEach((src, index) => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.innerHTML = `<img src="${src}" alt="Foto ${index + 1}">`;
-            item.addEventListener('click', () => openLightbox(index));
-            galleryGrid.appendChild(item);
-        });
-
-        // Criar páginas para o carousel mobile (4 fotos por página)
-        const itemsPerPage = 4;
-        const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
-        const galleryDots = document.getElementById('galleryDots');
-        const galleryCarousel = document.getElementById('galleryCarousel');
-        let currentPage = 0;
-
-        for (let i = 0; i < galleryImages.length; i += itemsPerPage) {
-            const page = document.createElement('div');
-            page.className = 'gallery-page';
-            for (let j = i; j < i + itemsPerPage && j < galleryImages.length; j++) {
+            // Criar itens da galeria para desktop
+            galleryImages.forEach((src, index) => {
                 const item = document.createElement('div');
                 item.className = 'gallery-item';
-                item.innerHTML = `<img src="${galleryImages[j]}" alt="Foto ${j + 1}">`;
-                item.addEventListener('click', () => openLightbox(j));
-                page.appendChild(item);
-            }
-            galleryPages.appendChild(page);
-        }
-
-        // Criar pontos de navegação
-        for (let i = 0; i < totalPages; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
-            dot.addEventListener('click', () => goToPage(i));
-            galleryDots.appendChild(dot);
-        }
-
-        // Função para ir para uma página específica
-        function goToPage(pageIndex) {
-            const pageWidth = galleryCarousel.clientWidth;
-            galleryCarousel.scrollTo({
-                left: pageWidth * pageIndex,
-                behavior: 'smooth'
+                item.innerHTML = `<img src="${src}" alt="Foto ${index + 1}">`;
+                item.addEventListener('click', () => openLightbox(index));
+                galleryGrid.appendChild(item);
             });
-            updateActiveDot(pageIndex);
-        }
 
-        // Atualizar ponto ativo ao rolar
-        galleryCarousel.addEventListener('scroll', () => {
-            const pageWidth = galleryCarousel.clientWidth;
-            const newPage = Math.round(galleryCarousel.scrollLeft / pageWidth);
-            if (newPage !== currentPage) {
-                currentPage = newPage;
-                updateActiveDot(newPage);
+            // Criar páginas para o carousel mobile (4 fotos por página)
+            const itemsPerPage = 4;
+            const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
+            const galleryDots = document.getElementById('galleryDots');
+            const galleryCarousel = document.getElementById('galleryCarousel');
+            let currentPage = 0;
+
+            for (let i = 0; i < galleryImages.length; i += itemsPerPage) {
+                const page = document.createElement('div');
+                page.className = 'gallery-page';
+                for (let j = i; j < i + itemsPerPage && j < galleryImages.length; j++) {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    item.innerHTML = `<img src="${galleryImages[j]}" alt="Foto ${j + 1}">`;
+                    item.addEventListener('click', () => openLightbox(j));
+                    page.appendChild(item);
+                }
+                galleryPages.appendChild(page);
             }
-        });
 
-        function updateActiveDot(pageIndex) {
-            const dots = document.querySelectorAll('.gallery-dot');
-            dots.forEach((dot, index) => {
-                if (index === pageIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
+            // Criar pontos de navegação
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goToPage(i));
+                galleryDots.appendChild(dot);
+            }
+
+            // Função para ir para uma página específica
+            function goToPage(pageIndex) {
+                const pageWidth = galleryCarousel.clientWidth;
+                galleryCarousel.scrollTo({
+                    left: pageWidth * pageIndex,
+                    behavior: 'smooth'
+                });
+                updateActiveDot(pageIndex);
+            }
+
+            // Atualizar ponto ativo ao rolar
+            galleryCarousel.addEventListener('scroll', () => {
+                const pageWidth = galleryCarousel.clientWidth;
+                const newPage = Math.round(galleryCarousel.scrollLeft / pageWidth);
+                if (newPage !== currentPage) {
+                    currentPage = newPage;
+                    updateActiveDot(newPage);
                 }
             });
-        }
 
-        // Funções do lightbox
-        function openLightbox(index) {
-            currentImageIndex = index;
-            lightboxImg.src = galleryImages[index];
-            lightbox.classList.add('active');
-        }
+            function updateActiveDot(pageIndex) {
+                const dots = document.querySelectorAll('.gallery-dot');
+                dots.forEach((dot, index) => {
+                    if (index === pageIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
 
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-        }
+            // Funções do lightbox
+            function openLightbox(index) {
+                currentImageIndex = index;
+                lightboxImg.src = galleryImages[index];
+                lightbox.classList.add('active');
+            }
 
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-            lightboxImg.src = galleryImages[currentImageIndex];
-        }
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+            }
 
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-            lightboxImg.src = galleryImages[currentImageIndex];
-        }
+            function prevImage() {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                lightboxImg.src = galleryImages[currentImageIndex];
+            }
 
-        // Event listeners
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightboxPrev.addEventListener('click', prevImage);
-        lightboxNext.addEventListener('click', nextImage);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+            function nextImage() {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                lightboxImg.src = galleryImages[currentImageIndex];
+            }
+
+            // Event listeners
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', prevImage);
+            lightboxNext.addEventListener('click', nextImage);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            // Navegação com teclado
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+            });
         });
-
-        // Navegação com teclado
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') prevImage();
-            if (e.key === 'ArrowRight') nextImage();
-        });
-}
     </script>
 
     <!-- Botões Flutuantes -->
